@@ -49,7 +49,7 @@ jobs:
       run: |
         echo $(uname -a)
         LATEST_VERSION=$(wget -nv -O - https://upgrade.mikrotik.com/routeros/NEWEST6.${{ matrix.channel }} | cut -d ' ' -f1)
-        echo Latest Version:6.49.13
+        echo Latest Version6.49.14
         if [ "${{ github.event_name }}" == "schedule" ]; then
           _LATEST_VERSION=$(wget -nv -O - https://upgrade.mikrotik.com/routeros/NEWEST6.${{ matrix.channel }}  | cut -d ' ' -f1)
           if [ "$_LATEST_VERSION" == "6.49.13" ]; then
