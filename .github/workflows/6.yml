@@ -66,26 +66,26 @@ jobs:
         echo "LATEST_VERSION=${LATEST_VERSION}" >> $GITHUB_ENV
         echo "BUILD_TIME=${BUILD_TIME}" >> $GITHUB_ENV
 
-    - name: Cache NetInstall 6.49.8
-      if: steps.get_latest.outputs.has_new_version == 'true'
-      id: cache-netinstall
-      uses: actions/cache@v4
-      with:
-        path: |
-          netinstall.zip
-        key: netinstall-6.49.8
+    #- name: Cache NetInstall 6.49.8
+     # if: steps.get_latest.outputs.has_new_version == 'true'
+     # id: cache-netinstall
+     # uses: actions/cache@v4
+     # with:
+       # path: |
+      #    netinstall.zip
+      #  key: netinstall-6.49.8
 
-    - name: Get netinstall 6.49.8
-      if: steps.get_latest.outputs.has_new_version == 'true'
-      run: |
-        sudo wget -nv -O netinstall.zip https://download.mikrotik.com/routeros/6.49.8/netinstall-6.49.8.zip
+   # - name: Get netinstall 6.49.8
+     # if: steps.get_latest.outputs.has_new_version == 'true'
+      #run: |
+       # sudo wget -nv -O netinstall.zip https://download.mikrotik.com/routeros/6.49.8/netinstall-6.49.8.zip
 
-    - name: Patch netinstall 6.49.8
-      if: steps.get_latest.outputs.has_new_version == 'true'
-      run: |
-        sudo unzip netinstall.zip
-        sudo -E python3 patch.py netinstall netinstall.exe
-        sudo zip netinstall-6.49.8.zip ./netinstall.exe
+   # - name: Patch netinstall 6.49.8
+     # if: steps.get_latest.outputs.has_new_version == 'true'
+     # run: |
+      #  sudo unzip netinstall.zip
+       # sudo -E python3 patch.py netinstall netinstall.exe
+       # sudo zip netinstall-6.49.8.zip ./netinstall.exe
         
     - name: Cache mikrotik-6.49.8.iso
       if: steps.get_latest.outputs.has_new_version == 'true'
