@@ -173,16 +173,17 @@ jobs:
         sudo rm -rf ./install
         sudo zip install-image-6.49.zip ./install-image-6.49.img
         sudo rm ./install-image-6.49.img
-- name: Cache chr-${{ env.LATEST_VERSION }}.img.zip
+        
+    - name: Cache chr-6.49.img.zip
       if: steps.get_latest.outputs.has_new_version == 'true'
       id: cache-chr-img
       uses: actions/cache@v4
       with:
         path: |
           chr.img
-        key: chr-${{ env.LATEST_VERSION }}.img
+        key: chr-6.49.img
 
-    - name: Get chr-${{ env.LATEST_VERSION }}.img
+    - name: Get chr-6.49.img
       if: steps.get_latest.outputs.has_new_version == 'true' && steps.cache-chr-img.outputs.cache-hit != 'true'
       run: |
           sudo wget -nv -O chr.img.zip https://download.mikrotik.com/routeros/$LATEST_VERSION/chr-$LATEST_VERSION.img.zip
@@ -190,7 +191,7 @@ jobs:
           sudo rm chr.img.zip
           sudo mv chr-$LATEST_VERSION.img chr.img
 
-    - name: Create chr-${{ env.LATEST_VERSION }}.img
+    - name: Create chr-6.49.img
       if: steps.get_latest.outputs.has_new_version == 'true'
       run: |
         sudo mkdir ./chr
